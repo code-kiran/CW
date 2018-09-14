@@ -8,21 +8,29 @@
 
 import Foundation
 import UIKit
-
+let imageCache = NSCache<AnyObject, AnyObject>()
 extension UIImageView {
-    func downloadImages(from url: String) {
-        let urlRequest = URLRequest.init(url: URL(string: url)!)
-        let task = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
+    
+    func downloadImages(url: String) {
+        let url = URL(string: url)
+        //it check the image in the cache firest
+        if let imagesFromCache = imageCache.object(forKey: url as AnyObject) as? UIImage{
+            self.image = imagesFromCache
+            return
+        }
+        //it downloads the image if there is no image in cachź
+        URLSession.shared.dataTask(with: url!) { (data, response, error) in
             if error != nil {
                 print(error!)
                 return
             }
-            DispatchQueue.main.async {
-                self.image = UIImage(data: data!)
+            
+            DispatchQueue.main.sync {
+                if   let imageToCache = UIImage(data: data!) {
+                    imageCache.setObject(imageToCache, forKey: url as AnyObject)
+                self.image = imageToCache
+                }
             }
-        }
-        task.resume()
-        
+            }.resume()
     }
-    
 }

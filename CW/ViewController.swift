@@ -68,7 +68,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         cell?.eventDescription.text = event.eventDescription
         cell?.eventDate.text = event.startDate
         cell?.eventDistance.text = event.distance
-        cell?.eventImage.downloadImages(from: event.mainImage!)
+        cell?.eventImage.downloadImages(url: event.mainImage!)
         
         
 //        if eventArray[indexPath.row].isRunning == 1{
