@@ -26,8 +26,8 @@ class EventModal {
         self.location =  eventJson["location"] as? String
         self.latitude =  eventJson["latitude"] as? String
         self.longitude =  eventJson["longitude"] as? String
-        self.startDate =  eventJson["startDate"] as? String
-        self.endDate =  eventJson["endDate"] as? String
+        self.startDate =  eventJson["start_date"] as? String
+        self.endDate =  eventJson["end_date"] as? String
         self.mainImage =  eventJson["mainImage"] as? String
         self.eventPrice =  eventJson["eventPrice"] as? String
         self.isRunning =  eventJson["isRunning"] as? Int

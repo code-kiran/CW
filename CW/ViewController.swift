@@ -12,40 +12,32 @@ import Alamofire
 class ViewController: UIViewController {
     @IBOutlet weak var tblView: UITableView!
     let baseUrl = "http://api.yeahviva.com/Events/getEventListingForWheel.json"
-    let token:[String: Any] = [
-        "token": "i3rq9jj9f2wy42bxldknnzr7o77pyzfi87yx0gjm"
-    ]
+    let token:[String: Any] = ["token": "i3rq9jj9f2wy42bxldknnzr7o77pyzfi87yx0gjm"]
     
     var eventArray:[EventModal] = []
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        getData(fromUrl: baseUrl)
         tblView.delegate = self
         tblView.dataSource = self
+         getData(fromUrl: baseUrl)
     }
     
     func getData(fromUrl: String){
         Alamofire.request(fromUrl, method: .post, parameters: token, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
-          //  print(response)
             let responseData = response.result.value as? [String: Any]
             let dataOutput = responseData!["output"] as? [String: Any]
             let events = dataOutput!["response"] as? NSArray
                 if events != nil {
                     for event in events!  {
                         self.eventArray.append(EventModal(eventJson: event as! NSDictionary))
-                       // print(self.eventArray)
                     }
                     DispatchQueue.main.async {
                         self.tblView.reloadData()
-
                     }
                     
             }
             }
-        
-        
     }
 
 
@@ -69,57 +61,29 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         cell?.eventDate.text = event.startDate
         cell?.eventDistance.text = event.distance
         cell?.eventImage.downloadImages(url: event.mainImage!)
-        
-        
-//        if eventArray[indexPath.row].isRunning == 1{
-//            cell.textLabel?.text = "going"
-//        } else {
-//            cell.textLabel?.text = "not going"
-//        }
-        
         return cell!
     }
+    
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if   let vc = storyboard?.instantiateViewController(withIdentifier: "EventDetailVC") as? EventDetailVC {
              let event = eventArray[indexPath.row]
-            let venue = event.location
-            let lat = event.latitude
-            let lng = event.longitude
-            let tite = event.eventName
-            let desc = event.eventDescription
-            let start = event.startDate
-            let end = event.endDate
-            let price = event.eventPrice
-            let dist = event.distance
-            
-            vc.titl = tite
-            vc.location = venue
-            vc.desc = desc
-            
-            if let newDist = dist {
-                vc.dist = Int(newDist)
-            }else {
-                vc.dist = 10
-            }
-            
-            vc.end = end
-            vc.start = start
-            vc.price = price
-            
-            if let newlat = lat {
+            vc.titl = event.eventName
+            vc.location = event.location
+            vc.desc = event.eventDescription
+            vc.dist = event.distance
+            vc.end = event.endDate
+            vc.start = event.startDate
+            vc.price = event.eventPrice
+            if let newlat = event.latitude {
                 vc.lat = Double(newlat)
             }
-       
-            
-            if let newlng = lng {
+            if let newlng = event.longitude {
                 vc.lng = Double(newlng)
             }
-            
             self.present(vc, animated: true, completion: nil)
         }
-      
-        
     }
     
     

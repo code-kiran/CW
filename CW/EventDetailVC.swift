@@ -24,7 +24,7 @@ class EventDetailVC: UIViewController {
     var start: String?
     var end: String?
     var price: String?
-    var dist: Int?
+    var dist: String?
     var titl:String?
     var desc: String?
     var mapView = GMSMapView()
@@ -34,15 +34,11 @@ class EventDetailVC: UIViewController {
         venue.text = "VENUE: \n" + location!
         eventTitle.text = titl
         eventDescription.text = desc
-        startDate.text = start
-        endDate.text = end
-        distance.text = "\(dist)"
-        print(dist)
-        ticketPrice.text = price
-        
-      
+        startDate.text = "Start Date and Time: " + start!
+        endDate.text = "End Date and Time: " + end!
+        distance.text = dist!  + "km far from you do you . Want to get ticket ?? "
+        ticketPrice.text = "Ticket costs: " + price!
     }
-    
     
     // I suggest moving your code to viewDidLayoutSubviews: so your mapView frame is set after the googleMapView has stretched to fill the screen,
     override func viewDidLayoutSubviews() {
