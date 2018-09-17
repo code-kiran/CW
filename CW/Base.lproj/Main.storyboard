@@ -240,7 +240,7 @@
                             <constraint firstItem="wtX-bi-9h4" firstAttribute="trailing" secondItem="17t-bb-Roa" secondAttribute="trailing" id="lhH-M8-sdh"/>
                             <constraint firstItem="17t-bb-Roa" firstAttribute="leading" secondItem="wtX-bi-9h4" secondAttribute="leading" id="n3a-X6-5Kr"/>
                             <constraint firstItem="M8I-Qy-OYr" firstAttribute="leading" secondItem="wtX-bi-9h4" secondAttribute="leading" id="oxC-Wi-nNS"/>
-                            <constraint firstItem="bec-4h-byV" firstAttribute="height" secondItem="yX8-Id-JGT" secondAttribute="height" id="xif-Ls-8nJ"/>
+                            <constraint firstItem="bec-4h-byV" firstAttribute="height" secondItem="yX8-Id-JGT" secondAttribute="height" priority="700" id="xif-Ls-8nJ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="wtX-bi-9h4"/>
                     </view>

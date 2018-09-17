@@ -9,7 +9,8 @@
 import Foundation
 class EventModal {
     let distance, eventID, eventName, eventDescription: String?
-    let location, latitude, longitude, startDate: String?
+    let location, startDate: String?
+    let longitude, latitude: Double?
     let endDate: String?
     let mainImage: String?
     let eventPrice: String?
@@ -24,8 +25,18 @@ class EventModal {
         self.eventName =  eventJson["eventName"] as? String
         self.eventDescription =  eventJson["eventDescription"] as? String
         self.location =  eventJson["location"] as? String
-        self.latitude =  eventJson["latitude"] as? String
-        self.longitude =  eventJson["longitude"] as? String
+       // self.latitude =  eventJson["latitude"] as? String
+        if let latDouble = eventJson["latitude"] as? String {
+            self.latitude = Double(latDouble)
+        } else {
+            self.latitude = nil
+        }
+        if let longDouble = eventJson["longitude"] as? String {
+            self.longitude = Double(longDouble)
+        } else {
+            self.longitude = nil
+        }
+        // self.longitude=  eventJson["longitude"] as? String
         self.startDate =  eventJson["start_date"] as? String
         self.endDate =  eventJson["end_date"] as? String
         self.mainImage =  eventJson["mainImage"] as? String

@@ -14,7 +14,7 @@ class ViewController: UIViewController {
     let baseUrl = "http://api.yeahviva.com/Events/getEventListingForWheel.json"
     let token:[String: Any] = ["token": "i3rq9jj9f2wy42bxldknnzr7o77pyzfi87yx0gjm"]
     
-    var eventArray:[EventModal] = []
+    var eventArray = [EventModal]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,20 +68,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if   let vc = storyboard?.instantiateViewController(withIdentifier: "EventDetailVC") as? EventDetailVC {
-             let event = eventArray[indexPath.row]
-            vc.titl = event.eventName
-            vc.location = event.location
-            vc.desc = event.eventDescription
-            vc.dist = event.distance
-            vc.end = event.endDate
-            vc.start = event.startDate
-            vc.price = event.eventPrice
-            if let newlat = event.latitude {
-                vc.lat = Double(newlat)
-            }
-            if let newlng = event.longitude {
-                vc.lng = Double(newlng)
-            }
+            vc.eventArray = eventArray
+            vc.indePath = indexPath.row
             self.present(vc, animated: true, completion: nil)
         }
     }
