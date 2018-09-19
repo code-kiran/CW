@@ -7,7 +7,11 @@
 //
 
 import Foundation
+
+
 class EventModal {
+  
+    
     let distance, eventID, eventName, eventDescription: String?
     let location, startDate: String?
     let longitude, latitude: Double?
@@ -18,6 +22,8 @@ class EventModal {
     let  hasParticipants, isUserInterested, isUserGoing: Int?
     let hasUserViewedEvent, isSponsored: Int? //
     let sponsoredTitle, specialevents: String?
+//    let dataOutput: [String: Any]?
+//    let events: NSArray?
     
     init(eventJson: NSDictionary) {
         self.distance = eventJson["distance"] as? String
@@ -55,5 +61,20 @@ class EventModal {
         self.isSponsored =  eventJson["isSponsored"] as? Int
         self.sponsoredTitle =  eventJson["sponsoredTitle"] as? String
         self.specialevents =  eventJson["specialevents"] as? String
+//        self.dataOutput = eventJson["output"] as? [String: Any]
+//        self.events = dataOutput!["response"] as? NSArray
+       
+        
+//        if events != nil {
+//            for event in events! {
+//                eventArray.append(EventModal(eventJson: event as! NSDictionary))
+//
+//            }
+//
+//
+//
+//        }
+        
+        
     }
 }

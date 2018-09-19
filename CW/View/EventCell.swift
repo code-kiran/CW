@@ -15,15 +15,15 @@ class TblCell: UITableViewCell {
     @IBOutlet weak var eventDescription: UILabel!
     @IBOutlet weak var eventDate: UILabel!
     @IBOutlet weak var eventDistance: UILabel!
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+   
+    func updateView(events: EventModal ){
+        eventTitle.text = events.eventName
+        eventDescription.text = events.eventDescription
+        eventDate.text = events.startDate
+        eventDistance.text = events.distance
+        
+        
+        
     }
 
 }

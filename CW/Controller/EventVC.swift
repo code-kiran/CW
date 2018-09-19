@@ -54,24 +54,28 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? TblCell
+        if  let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? TblCell {
          let event = eventArray[indexPath.row]
-        cell?.eventTitle.text = event.eventName
-        cell?.eventDescription.text = event.eventDescription
-        cell?.eventDate.text = event.startDate
-        cell?.eventDistance.text = event.distance
-        cell?.eventImage.downloadImages(url: event.mainImage!)
-        return cell!
+        cell.updateView(events: event)
+        cell.eventImage.downloadImages(url: event.mainImage!)
+        return cell
+        }
+        else {
+            return TblCell()
+        }
     }
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        if   let vc = storyboard?.instantiateViewController(withIdentifier: "EventDetailVC") as? EventDetailVC {
+        if  let vc = storyboard?.instantiateViewController(withIdentifier: "EventDetailVC") as? EventDetailVC {
+            let barButton = UIBarButtonItem()
+            barButton.title = ""
+            navigationItem.backBarButtonItem = barButton 
             vc.eventArray = eventArray
             vc.indePath = indexPath.row
-            self.present(vc, animated: true, completion: nil)
+           navigationController?.pushViewController(vc, animated: true)
         }
+        
     }
     
     
