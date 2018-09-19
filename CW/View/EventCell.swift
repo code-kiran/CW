@@ -20,10 +20,7 @@ class TblCell: UITableViewCell {
         eventTitle.text = events.eventName
         eventDescription.text = events.eventDescription
         eventDate.text = events.startDate
-        eventDistance.text = events.distance
-        
-        
-        
+        eventDistance.text = events.distance    
     }
 
 }

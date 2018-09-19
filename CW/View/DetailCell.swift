@@ -17,7 +17,7 @@ class DetailTblCell: UITableViewCell {
     @IBOutlet weak var ticketPrice: UILabel!
     @IBOutlet weak var distance: UILabel!
     
-    func updateEvent(event: EventModal){
+    func updateEvent(event: EventModal) {
         venue.text = "VENUE: \n" + event.location!
         eventTitle.text = event.eventName
         eventDescription.text = event.eventDescription
@@ -25,8 +25,6 @@ class DetailTblCell: UITableViewCell {
         endDate.text = "End Date and Time: " + event.endDate!
         distance.text = event.distance!  + "km far from you do you . Want to get ticket ?? "
         ticketPrice.text = "Ticket costs: " + event.eventPrice!
-        
     }
-    
-    
+  
 }

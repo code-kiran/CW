@@ -21,8 +21,7 @@ class EventDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         super.viewDidLoad()
         detailTable.delegate = self
         detailTable.dataSource = self
-    
-            }
+    }
     
     // I suggest moving your code to viewDidLayoutSubviews: so your mapView frame is set after the googleMapView has stretched to fill the screen,
     override func viewDidLayoutSubviews() {
@@ -37,9 +36,6 @@ class EventDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         marker.snippet = "Australia"
         marker.map = mapView
         self.mymapView.addSubview(mapView)
-       
-
-
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -48,7 +44,6 @@ class EventDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
-        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -56,13 +51,10 @@ class EventDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
             let eventDetails = eventArray[indePath]
             cell.updateEvent(event: eventDetails)
             return cell
-
-        }
-        else {
+        }  else {
             return DetailTblCell()
         }
     }
     
-
     
 }
