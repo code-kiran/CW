@@ -8,14 +8,14 @@
 
 import Foundation
 import UIKit
+
 let imageCache = NSCache<AnyObject, AnyObject>()
 extension UIImageView {
-    
     func downloadImages(url: String) {
         let url = URL(string: url)
         //it check the image in the cache firest
         image = nil
-        if let imagesFromCache = imageCache.object(forKey: url as AnyObject) as? UIImage{
+        if let imagesFromCache = imageCache.object(forKey: url as AnyObject) as? UIImage {
             self.image = imagesFromCache
             return
         }
@@ -25,14 +25,13 @@ extension UIImageView {
                 print(error!)
                 return
             }
-            
             DispatchQueue.main.sync {
                 if let imageToCache = UIImage(data: data!) {
-                imageCache.setObject(imageToCache, forKey: url as AnyObject)
-                self.image = imageToCache
+                    imageCache.setObject(imageToCache, forKey: url as AnyObject)
+                    self.image = imageToCache
                 }
             }
-            }.resume()
+        }.resume()
     }
 }
 
